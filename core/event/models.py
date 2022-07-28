@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Event(models.Model):
     e_name = models.CharField('Event Name',max_length=50)
@@ -9,7 +9,8 @@ class Event(models.Model):
     desc = models.TextField('Description')
     p_limit = models.IntegerField('Participant Limit')
     brochure = models.ImageField('Event Poster')
-    
+    e_type = models.CharField('Event Type',max_length=188,default='College Fest')
+    reg_fee = models.CharField("Registration Fee",default="Free",max_length=100)
     # participants = models.ManyToManyField(Student,on_delete=models.CASCADE)
     Venue = models.CharField(max_length=255)
 
@@ -22,7 +23,7 @@ class Club(models.Model):
     profile_pic = models.ImageField('Profile Pic',upload_to='club')
     events = models.ForeignKey(Event,on_delete=models.CASCADE,blank=True,null=True)
     
-    #c_admin = models.ForeignKey(Student,on_delete=models.CASCADE)
+    c_admin = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
     def __str__(self):
         return self.c_name
     

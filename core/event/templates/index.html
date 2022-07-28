@@ -10,12 +10,7 @@
             recusandae. Modi a est commodi molestiae labore id voluptates, sapiente dolorem delectus adipisci, et totam
             laudantium odit, dicta fuga. lo</div>
     </div>
-    <div class="btn"></div>
-    <div class="btn"></div>
-    <div class="btn"></div>
-    <div class="btn"></div>
-    <div class="btn"></div>
-    <div class="btn"></div>
+   
     <div class="flex flex-col category ">
         <h1 class="title text-3xl  md:text-5xl text-white py-10 px-10">Latest Events</h1>
         <div class="section2 px-10 flex  overflow-x-scroll space-x-3">
@@ -23,9 +18,9 @@
             <div class="card h-96  rounded-t-md bg-transparent">
                 <img src="{% static 'images/bg.jpg' %}" class="w-60 rounded-t-md" alt="card-img">
                 <div class="flex flex-col card-details bg-white  p-5 h-44 w-60 rounded-b-md">
-                    <div class="card-title font-bold text-lg">{{event.title}}</div>
-                    <div class="card-club">{{event.type}}</div>
-                    <div class="card-type">{{event.club}}</div>
+                    <div class="card-title font-bold text-lg">{{event.e_name}}</div>
+                    <div class="card-club">{{event.e_type}}</div>
+                    <div class="card-type">{{event.reg_fee}}</div>
                     <a href="/new-event.html"
                         class="btn text-center text-slate-50 rounded-xl px-3 py-2 bg-red-600 mt-2">View
                         Details</a>
