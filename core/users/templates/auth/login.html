@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="absolute w-full flex flex-wrap top-56">
+    <div class="container mb-20 flex flex-wrap flex-col h-1/6 px-10 md:px-80  justify-center">
+        <div class="container-head bg-white  text text-black font-sans font-bold rounded-t-lg px-8 flex">
+            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Club Login</div>
+        </div>
+        <div class="message text-red-500">
+            {%  if messages %} 
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- form-content -->
+        <form action="login/" method="POST" class="bg-white shadow-md rounded-b-lg  px-8 pt-6 pb-8 mb-4">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="email" type="text" name='email' placeholder="Username">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input
+                    class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="password" type="password" name="password" placeholder="******************">
+                <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
+            </div>
+            <div class="flex items-center justify-between">
+                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    href="{% url 'login' %}" type="submit">
+                    Login
+                </a>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                    href="#">
+                    Forgot Password?
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
