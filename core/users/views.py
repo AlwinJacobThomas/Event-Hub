@@ -19,4 +19,6 @@ def login_user(request):
             return redirect('login')
             # Return an 'invalid login' error message.
     else:
-        return render(request, 'auth/login.html', {})
+        return render(request, 'users/login.html', {})
+def signup_user(request):
+    return render(request, 'users/signup.html', {})

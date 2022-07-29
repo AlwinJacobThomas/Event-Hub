@@ -14,14 +14,26 @@
 
 <body class="bg-[url('{% static 'images/bg1.jpg' %}')] bg-cover bg-left-bottom bg-fixed">
   {% block header %}
-
+  
+  {% if admin %}
   <div class="container relative">
     <header class="flex absolute p-3 md:px-10 bg-transparent w-full font-san font-bold h-20">
       <a href="/" class="self-center text-3xl  "><span class=" text-white">Event </span> <span
           class=" text-red-600">Hub</span></a>
-      <a href="{% url 'login'%}" class="self-center text-md md:text-lg p-3  text-white hover:text-red-400 ml-auto">Login</a>
-      <a href="#" class="self-center p-3  text-md md:text-lg text-white hover:text-red-400 ">Signup</a>
+      <div class="right ml-auto flex gap-3 items-center">
+        <span class="text-white sm:hidden ">{{user.username}}</span>
+        <img src="{{request.user.profile_image.url}}" alt="dp" class="rounded-full h-12 w-12">
+      </div>    
     </header>
+  {% else %}
+  <div class="container relative">
+    <header class="flex absolute p-3 md:px-10 bg-transparent w-full font-san font-bold h-20">
+      <a href="/" class="self-center text-3xl  "><span class=" text-white">Event </span> <span
+          class=" text-red-600">Hub</span></a>
+      <a href="{% url 'login' %}" class="self-center text-md md:text-lg p-3  text-white hover:text-red-400 ml-auto">Login</a>
+      <a href="{% url 'signup' %}" class="self-center p-3  text-md md:text-lg text-white hover:text-red-400 ">Signup</a>
+    </header>
+  {% endif %}  
     {% block content %}
     
     {% endblock %}
