@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'event',
-    'users'
+    'users',
+    'django_cleanup'#used for cleaning the files if its url is cleaned up(image cleaning)
 ]
 
 MIDDLEWARE = [
