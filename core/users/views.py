@@ -26,28 +26,22 @@ def login_user(request):
             # Return an 'invalid login' error message.
     else:
         return render(request, 'users/login.html', {})
-def signup_user(request,*args,**kwargs):
-    user = request.user
-    if user.is_authenticated:
-        return HttpResponse(f"you are  already logged in as { user.email }")
-    context={
+def signup_user(request):
+    form = SignupForm()
+    context={"form":form}
 
-    }
-    if request.POST :
-        form = SignupForm(request.POST)
-        if form.is_valid():
+    if request.method=='POST' :
+        form = SignupForm(request.POST,request.FILES)
+        # if form.is_valid():
             #save the details
-            form.save() 
-            email = form.cleaned_data.get('email').lower() 
-            #authenticating with the credentials
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email,password=raw_password)
-            login(request,account)
-            destination = kwargs.get('next')
-            if destination:
-                return redirect(destination)
-            return redirect("index")
-
-        else:
-            context['signup_form'] = form    
-    return render(request,'users/signup.html', context)
+        form.save() 
+    #         #authenticating with the credentials
+    #         email = form.cleaned_data.get('email').lower()
+    #         raw_password = form.cleaned_data.get('password1')
+    #         account = authenticate(email=email,password=raw_password)
+    #         login(request,account)
+    #         destination = kwargs.get('next')
+    #         if destination:
+    #             return redirect(destination)
+    #         return redirect("index")
+    return render(request,'users/reg.html', context)
