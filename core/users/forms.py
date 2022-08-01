@@ -19,10 +19,10 @@ class SignupForm(UserCreationForm):
         self.fields['username'].widget.attrs.update({"class":"bg-blue-300 w-full"})
         self.fields['password1'].widget.attrs.update({"class":"bg-green-300 w-full"})
         self.fields['password2'].widget.attrs.update({"class":"bg-yellow-300 w-full"})
-        self.fields['profile_image'].widget.attrs.update({"class":"bg-red-300"})
+        #self.fields['profile_image'].widget.attrs.update({"class":"bg-red-300"})
     class Meta:
         model = User #user in settings.py -Account
-        fields = ('email','username','password1','password2','profile_image')
+        fields = ('email','username','password1','password2')
 
     # def username_clean(self):  
     #     username = self.cleaned_data['username'].lower()  

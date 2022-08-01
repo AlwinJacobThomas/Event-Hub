@@ -14,7 +14,7 @@
             {% endif %}
         </div>
         <!-- form-content -->
-        <form action="login/" method="POST" class="bg-white shadow-md rounded-b-lg  px-8 pt-6 pb-8 mb-4">
+        <form action="" method="POST" class="bg-white shadow-md rounded-b-lg  px-8 pt-6 pb-8 mb-4">
             {% csrf_token %}
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
@@ -34,10 +34,8 @@
                 <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
             </div>
             <div class="flex items-center justify-between">
-                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     href="{% url 'login' %}" type="submit">
-                    Login
-                </a>
                 <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                     href="#">
                     Forgot Password?

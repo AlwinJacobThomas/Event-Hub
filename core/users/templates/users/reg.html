@@ -28,7 +28,7 @@
                         {{form.email}}
                     </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 ">
+                <!-- <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-pic">
@@ -36,7 +36,7 @@
                         </label>
                         {{form.profile_image}}
                     </div>
-                </div>
+                </div> -->
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -70,11 +70,8 @@
 
                 {% endif %}
 
-                <div class="btn py-5">
-                    <a href="{% url 'signup' %}"  class="btn text-center text-slate-50 rounded-lg font-bold  px-3 py-2 bg-red-600 ">
-                    Register
-                    </a>
-                    <button type="submit">save</button>
+                <div class="rounded w-full py-3 bg-red-600 text-white text-center mt-2 px-10">
+                    <input type="submit">
                 </div>
             </form>
         </div>

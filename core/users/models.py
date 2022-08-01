@@ -60,7 +60,7 @@ class Account(AbstractBaseUser):
     is_staff            = models.BooleanField(default=False)
     is_superuser        = models.BooleanField(default=False)
 
-    profile_image       = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
+    #profile_image       = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

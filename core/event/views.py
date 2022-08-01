@@ -8,6 +8,13 @@ from .models import  Event
 
 def index(request):
     events=Event.objects.all()
-    user =request.user
-    a = False
-    return render(request,'index.html',{"events":events,"admin":a,"user":user})
+    
+    if request.user.is_authenticated:
+        user =request.user
+        content= {
+                    "user":user,
+                    "events":events
+        }
+    else:
+        content ={}           
+    return render(request,'index.html',content)

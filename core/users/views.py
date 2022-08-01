@@ -14,8 +14,8 @@ def login_user(request):
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
-        
-        user = authenticate(request, email=email, password=password)
+        print(email+"   "+password)
+        user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
             return redirect('index')
@@ -26,12 +26,15 @@ def login_user(request):
             # Return an 'invalid login' error message.
     else:
         return render(request, 'users/login.html', {})
+def logout_user(request):
+    logout(request)
+    return redirect('index')            
 def signup_user(request):
     form = SignupForm()
     context={"form":form}
 
     if request.method=='POST' :
-        form = SignupForm(request.POST,request.FILES)
+        form = SignupForm(request.POST)
         # if form.is_valid():
             #save the details
         form.save() 
@@ -44,4 +47,5 @@ def signup_user(request):
     #         if destination:
     #             return redirect(destination)
     #         return redirect("index")
+        return redirect('login')
     return render(request,'users/reg.html', context)
