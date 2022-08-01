@@ -2,6 +2,8 @@ import os,uuid
 from django.utils.deconstruct import deconstructible
 from pickle import TRUE
 from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 # Create your models here.
 #---------------path specifier---------------
@@ -51,7 +53,7 @@ class MyAccountManager(BaseUserManager):
 
 #-----------Account User----------------------
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser,PermissionsMixin):
     email               = models.EmailField(verbose_name="email",max_length=60,unique=True)
     username            = models.CharField(max_length=30,unique=True)
     date_joined         = models.DateTimeField(verbose_name="date joined",auto_now_add=True)
@@ -74,4 +76,13 @@ class Account(AbstractBaseUser):
       return True
 
     def has_module_perms(self, app_label):
-      return True      
+      return True
+
+
+class Club(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)        
+    desc = models.TextField('Description')
+    profile_pic = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
+    def __str__(self):
+        return str(self.user)
+        
