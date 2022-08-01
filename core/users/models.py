@@ -3,6 +3,11 @@ from django.utils.deconstruct import deconstructible
 from pickle import TRUE
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
 # Create your models here.
 #---------------path specifier---------------
 @deconstructible
@@ -18,7 +23,8 @@ class PathAndRename(object):
         # return the whole path to the file
         return os.path.join('users/profile/', filename)
 
-path_and_rename = PathAndRename("users/profile/")
+
+
 #---------------end path specifier---------------
 
 #-----------Account manager----------------------
@@ -60,7 +66,7 @@ class Account(AbstractBaseUser):
     is_staff            = models.BooleanField(default=False)
     is_superuser        = models.BooleanField(default=False)
 
-    #profile_image       = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
+    #
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -75,3 +81,34 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
       return True      
+
+#---------end Account User---------------------
+#-------- extend the Account
+#  profile---------------
+class Club(models.Model,PathAndRename):
+    user= models.OneToOneField(Account,on_delete=models.CASCADE)
+    club_desc = models.TextField()
+    path_and_rename = PathAndRename("users/club/")
+    profile_image  = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/default.png")
+    
+    def __str__(self):
+        return self.username + self.email
+class Student(models.Model,PathAndRename):
+    user= models.OneToOneField(Account,on_delete=models.CASCADE)
+    phone = models.IntegerField()
+    dept = models.CharField("Department",max_length=255)
+    y_o_p = models.SmallIntegerField('year of passout')
+    path_and_rename = PathAndRename("users/club/")
+    profile_image  = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/default.png")
+
+    def __str__(self):
+        return self.username + self.email
+
+@receiver(post_save, sender=Account)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Club.objects.create(user=instance)
+
+@receiver(post_save, sender=Account)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()        
