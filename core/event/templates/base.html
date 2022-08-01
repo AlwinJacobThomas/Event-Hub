@@ -20,7 +20,7 @@
     <header class="flex absolute p-3 md:px-10 bg-transparent w-full font-san font-bold h-20">
       <a href="/" class="self-center text-3xl  "><span class=" text-white">Event </span> <span
           class=" text-red-600">Hub</span></a>
-      <div class="right text-white ml-auto flex flex-col  ">
+      <div class="right text-white ml-auto flex gap-3 items-center">
         <span class="  ">{{user.email}}</span>
         <a href="{% url 'logout' %}" class="">logout</a>
         <!-- <img src="{{request.user.profile_image.url}}" alt="dp" class="rounded-full h-12 w-12"> -->
