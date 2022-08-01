@@ -10,4 +10,10 @@ open terminal and follow the commands
 
 > venv/Scripts/activate
 
->pip install
+> pip install
+
+> cd core
+
+> py manage.py makemigrations
+> py manage.py migrate
+> py manage.py runserver
