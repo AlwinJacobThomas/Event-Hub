@@ -1,7 +1,13 @@
+from tkinter import CASCADE
 from django.db import models
+
 import os
 from django.utils.deconstruct import deconstructible
 import uuid
+
+from users.models import Account
+
+#from core.users.models import Club
 
 @deconstructible
 class PathAndRename(object):
@@ -19,9 +25,10 @@ class PathAndRename(object):
 path_and_rename = PathAndRename("event/")
 
 class Event(models.Model):
+    club = models.ForeignKey(Account,on_delete=models.CASCADE,null=True,blank=True)
     e_name = models.CharField('Event Name',max_length=50)
     date_of_creation = models.DateTimeField('Date of Creation',auto_now_add=True)
-    e_date = models.DateField('Event Date',auto_now_add=True)
+    e_date = models.DateField('Event Date')
     desc = models.TextField('Description')
     p_limit = models.IntegerField('Participant Limit')
     brochure = models.ImageField('Event Poster', upload_to=path_and_rename,null=True)
@@ -33,20 +40,13 @@ class Event(models.Model):
     def __str__(self):
         return self.e_name
 
-class Club(models.Model):
-    c_name = models.CharField('Club Name',max_length=255)
-    c_about = models.TextField('About')
-    profile_pic = models.ImageField('Profile Pic',upload_to='club')
-    events = models.ForeignKey(Event,on_delete=models.CASCADE,blank=True,null=True)
-    
-    #c_admin = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
-    def __str__(self):
-        return self.c_name
+
     
 class Notification(models.Model):
+    event = models.ForeignKey(Event,on_delete=models.CASCADE)
     title = models.CharField(max_length=160)
     desc = models.TextField('Description',blank=True)
     time = models.TimeField(auto_now=True)
-    event = models.ForeignKey(Event,on_delete=models.CASCADE)
+
     def __str__(self):
         return self.title

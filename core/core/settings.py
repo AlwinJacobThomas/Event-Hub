@@ -112,8 +112,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'event/staticfiles')
 STATICFILES_DIRS =(
     os.path.join(BASE_DIR,'event/static'),
-
-                    )
+)
 
 MEDIA_ROOT = BASE_DIR / 'uploads'
 

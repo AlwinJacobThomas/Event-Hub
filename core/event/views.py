@@ -1,9 +1,9 @@
 
 from unicodedata import name
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import  Event
-
+from .forms import AddEventForm
 # Create your views here.
 
 def index(request):
@@ -11,10 +11,24 @@ def index(request):
     
     if request.user.is_authenticated:
         user =request.user
-        content= {
+        events = Event.objects.all()
+        content= {  "events":events,
                     "user":user,
                     "events":events
         }
     else:
         content ={}           
     return render(request,'index.html',content)
+
+def add_event(request):
+    form = AddEventForm()
+    
+    context={"form":form}
+
+    if request.method=='POST' :
+        form = AddEventForm(request.POST,request.FILES)
+        if form.is_valid():
+            #save the details
+            form.save() 
+        return redirect('index')
+    return render(request,'club/add-event.html', context)

@@ -6,16 +6,16 @@
 
         <!-- form-content -->
         <div class="bg-gray-300 self-center font-normal text-gray-600 h-90 content p-10 rounded-lg">
-            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Club Signup</div>
+            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Create New Event</div>
             <form class="w-full max-w-lg" enctype="multipart/form-data" method="POST" action="">
                 {% csrf_token %}
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-name">
-                            Club Name
+                            Event Name
                         </label>
-                        {{form.username}}
+                        {{form.e_name}}
                         
                         <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
                     </div>
@@ -24,58 +24,56 @@
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-email">
-                            Email
+                            Event Date
                         </label>
-                        {{form.email}}
+                        {{form.e_date}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-desc">
-                            Club Description
+                            Event Description
                         </label>
-                        {{club.desc}}
+                        {{form.desc}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-desc">
-                            Profile Picture
+                            Brochure
                         </label>
-                        {{club.profile_pic}}
+                        {{form.brochure}}
                     </div>
                 </div>
-                        
-                <!-- <div class="flex flex-wrap -mx-3 ">
-                    <div class="w-full md:w-full px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            for="grid-pic">
-                            Profile Picture
-                        </label>
-                        {{form.profile_image}}
-                    </div>
-                </div> -->
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-password1">
-                            Password
+                            Participant Limit
                         </label>
-                        {{form.password1}}
+                        {{form.p_limit}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-password2">
-                            Confirm Password
+                            Event Type
                         </label>
-                        {{form.password2}}
+                        {{form.e_type}}
                     </div>
                 </div>
-
+                <div class="flex flex-wrap -mx-3 ">
+                    <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="grid-password2">
+                            Registration FEE
+                        </label>
+                        {{form.reg_fee}}
+                    </div>
+                </div>
                 {% for field in registration_form %}
                 <p>
                     {% for error in field.errors %}

@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import is_valid_path
-from users.forms import SignupForm
+
+from users.forms import SignupForm,ClubRegForm
 
 # Create your views here.
 
@@ -28,24 +29,20 @@ def login_user(request):
         return render(request, 'users/login.html', {})
 def logout_user(request):
     logout(request)
-    return redirect('index')            
+    return redirect('index')        
+
+
 def signup_user(request):
     form = SignupForm()
-    context={"form":form}
+    club_form = ClubRegForm()
+    context={"form":form,"club":club_form}
 
     if request.method=='POST' :
         form = SignupForm(request.POST)
-        # if form.is_valid():
+        club_form = ClubRegForm(request.POST,request.FILES)
+        if form.is_valid() and club_form.is_valid():
             #save the details
-        form.save() 
-    #         #authenticating with the credentials
-    #         email = form.cleaned_data.get('email').lower()
-    #         raw_password = form.cleaned_data.get('password1')
-    #         account = authenticate(email=email,password=raw_password)
-    #         login(request,account)
-    #         destination = kwargs.get('next')
-    #         if destination:
-    #             return redirect(destination)
-    #         return redirect("index")
+            form.save()
+            club_form.save(commit=False) 
         return redirect('login')
     return render(request,'users/reg.html', context)
