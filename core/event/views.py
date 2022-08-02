@@ -1,5 +1,7 @@
 
+from importlib.resources import contents
 from unicodedata import name
+from urllib import request
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import  Event
@@ -16,6 +18,7 @@ def index(request):
                     "user":user,
                     "events":events
         }
+        return render(request,'club/dashboard.html', content)
     else:
         content ={}           
     return render(request,'index.html',content)
@@ -27,8 +30,17 @@ def add_event(request):
 
     if request.method=='POST' :
         form = AddEventForm(request.POST,request.FILES)
+        
         if form.is_valid():
             #save the details
             form.save() 
         return redirect('index')
     return render(request,'club/add-event.html', context)
+def event(request,id):
+    
+    event = Event.objects.get(pk=id)
+    
+    content ={"event":event}
+    return render(request,'event.html', content)
+    
+    

@@ -1,4 +1,4 @@
-import email
+from django.utils.translation import gettext as _
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import is_valid_path
 
-from users.forms import SignupForm,ClubRegForm
+from users.forms import SignupForm,StudentRegForm
 
 # Create your views here.
 
@@ -34,15 +34,16 @@ def logout_user(request):
 
 def signup_user(request):
     form = SignupForm()
-    club_form = ClubRegForm()
-    context={"form":form,"club":club_form}
+    student_form = StudentRegForm()
+    context={"form":form,"student":student_form}
 
     if request.method=='POST' :
-        form = SignupForm(request.POST)
-        club_form = ClubRegForm(request.POST,request.FILES)
-        if form.is_valid() and club_form.is_valid():
+        form = SignupForm(request.POST, instance=request.user)
+        club_form = StudentRegForm(request.POST,request.FILES,instance=request.user.student)
+        if form.is_valid() and student_form.is_valid():
             #save the details
             form.save()
-            club_form.save(commit=False) 
+            student_form.save() 
+            messages.success(request,_('Your profile was successfully updated!'))
         return redirect('login')
     return render(request,'users/reg.html', context)

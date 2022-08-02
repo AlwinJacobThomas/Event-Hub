@@ -6,14 +6,14 @@
 
         <!-- form-content -->
         <div class="bg-gray-300 self-center font-normal text-gray-600 h-90 content p-10 rounded-lg">
-            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Club Signup</div>
+            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Student Signup</div>
             <form class="w-full max-w-lg" enctype="multipart/form-data" method="POST" action="">
                 {% csrf_token %}
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-name">
-                            Club Name
+                            Student Name
                         </label>
                         {{form.username}}
                         
@@ -33,9 +33,9 @@
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-desc">
-                            Club Description
+                            Student Bio
                         </label>
-                        {{club.desc}}
+                        {{student.bio}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
@@ -44,19 +44,27 @@
                             for="grid-desc">
                             Profile Picture
                         </label>
-                        {{club.profile_pic}}
+                        {{student.profile_pic}}
                     </div>
                 </div>
-                        
-                <!-- <div class="flex flex-wrap -mx-3 ">
+                <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            for="grid-pic">
+                            for="grid-desc">
+                            Year of Passout
+                        </label>
+                        {{student.year_of_passout}}
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 ">
+                    <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="grid-desc">
                             Profile Picture
                         </label>
-                        {{form.profile_image}}
+                        {{student.dept}}
                     </div>
-                </div> -->
+                </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"

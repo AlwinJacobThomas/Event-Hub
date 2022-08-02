@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Account,Club
+from .models import Account,Club,Student
 from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 class AccountAdmin(UserAdmin):
@@ -11,4 +11,5 @@ class AccountAdmin(UserAdmin):
     fieldsets = ()
 
 admin.site.register(Account,AccountAdmin)  
-admin.site.register(Club)  
+admin.site.register(Club)
+admin.site.register(Student)
