@@ -15,9 +15,24 @@
             <div class="venue"><span class="text-black text-xl font-bold ">Venue </span>{{event.venue}}</div>
             <div class="start-date "><span class="text-black font-bold text-xl ">Start Date </span>{{event.e_date}}
             </div>
-            <div class="p-limit "><span class="text-black font-bold text-xl">Participant Limit </span>{{event.p_limit}}</div>
+            <div class="p-limit "><span class="text-black font-bold text-xl">Participant Limit </span>{{event.p_limit}}
+            </div>
             <div class="description font-normal">{{event.desc}}</div>
-            <div class="btn py-5">
+            <div class="text-bold text-3xl">Participants</div>
+            <div class="flex flex-col bg-gray-300 w-full">
+                <div class="text-bold">details:</div><br>
+                <ol>
+                    {% for a in event.attendees.all %}
+                    --{{a.user.email}} --{{a.user}}
+                    {% endfor %}
+                </ol>
+            </div>
+
+
+
+
+
+            <!-- <div class="btn py-5">
                 <form method="POST">
                     {% csrf_token %}
                     <button type="submit"
@@ -29,11 +44,11 @@
                     {% endif %}
                     </button>
                 </form>
-            </div>
+            </div> -->
 
         </div>
     </div>
-    
+
 </section>
 
 {% endblock %}

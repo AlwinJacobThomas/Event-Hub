@@ -14,14 +14,14 @@ from users.models import Account,Club
 class SignupForm(UserCreationForm):
     
     
-    def __init__(self, *args, **kwargs):   
-        super().__init__(*args, **kwargs)
-        self.fields['email'].widget.attrs.update({"class":"bg-red-300 w-full"})
-        self.fields['username'].widget.attrs.update({"class":"bg-blue-300 w-full"})
-        self.fields['password1'].widget.attrs.update({"class":"bg-green-300 w-full"})
-        self.fields['password2'].widget.attrs.update({"class":"bg-yellow-300 w-full"})
+    # def __init__(self, *args, **kwargs):   
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['email'].widget.attrs.update({"class":"bg-red-300 w-full"})
+    #     self.fields['username'].widget.attrs.update({"class":"bg-blue-300 w-full"})
+    #     self.fields['password1'].widget.attrs.update({"class":"bg-green-300 w-full"})
+    #     self.fields['password2'].widget.attrs.update({"class":"bg-yellow-300 w-full"})
     class Meta:
-        model = User #user in settings.py -Account
+        model = Account #user in settings.py -Account
         fields = ('email','username','password1','password2')
 
     # def username_clean(self):  
@@ -48,11 +48,10 @@ class SignupForm(UserCreationForm):
 class StudentRegForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('bio','profile_pic','dept','year_of_passout')
+        fields = ('profile_pic','dept','year_of_passout')
 
-    def __init__(self, *args, **kwargs):   
-        super().__init__(*args, **kwargs)
-        self.fields['bio'].widget.attrs.update({"class":"bg-red-300 w-full h-28"})
-        self.fields['profile_pic'].widget.attrs.update({"class":"bg-green-300 w-full"})
-        self.fields['dept'].widget.attrs.update({"class":"bg-green-300 w-full"})
-        self.fields['year_of_passout'].widget.attrs.update({"class":"bg-green-300 w-full"})
+    # def __init__(self, *args, **kwargs):   
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['profile_pic'].widget.attrs.update({"class":"bg-green-300 w-full"})
+    #     self.fields['dept'].widget.attrs.update({"class":"bg-green-300 w-full"})
+    #     self.fields['year_of_passout'].widget.attrs.update({"class":"bg-green-300 w-full"})

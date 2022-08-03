@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="w-screen">
+    <div class="section pt-40">
+        
+
+        <div class="flex flex-col category ">
+            <div class="container flex bg-gray-300">
+            <a href="{% url 'student'%}" class="title text-3xl text-gray-500 md:text-4xl  py-10 px-10 ">New Events</a>
+            <a href="{% url 'student-reg'%}" class="title text-3xl  md:text-4xl  text-black py-10 px-10">Registered Events<a>
+        </div>
+            <div class="section2 px-10 flex space-x-3">
+                {% for event in reg_events %}
+                <div class="card h-96  rounded-t-md bg-transparent">
+                    <img src="{{event.brochure.url}}" class="w-60 rounded-t-md" alt="card-img">
+                    <div class="flex flex-col card-details bg-white  p-5 h-44 w-60 rounded-b-md">
+                        <div class="card-title font-bold text-lg">{{event.e_name}}</div>
+                        <div class="card-club">{{event.club}}</div>
+                        <div class="card-type">{{event.e_type}}</div>
+                        <a href="/{{event.id}}/event"
+                            class="btn text-center text-slate-50 rounded-xl px-3 py-2 bg-red-600 mt-2">Unenroll</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}

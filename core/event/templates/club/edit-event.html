@@ -1,21 +1,18 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<section class="absolute w-full flex flex-wrap top-56">
+<section class="absolute w-screen flex flex-wrap top-56">
     <div class="container mb-20  flex flex-wrap flex-col h-1/6 px-10 md:px-60  justify-center">
 
         <!-- form-content -->
         <div class="bg-gray-300 self-center font-normal text-gray-600 h-90 content p-10 rounded-lg">
-            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Student Signup</div>
+            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Edit Event</div>
             <form class="w-full max-w-lg" enctype="multipart/form-data" method="POST" action="">
                 {% csrf_token %}
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-name">
-                            Student Name
+                            Event Name
                         </label>
-                        {{form.username}}
+                        {{form.e_name}}
                         
                         <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
                     </div>
@@ -24,58 +21,56 @@
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-email">
-                            Email
+                            Event Date
                         </label>
-                        {{form.email}}
-                    </div>
-                </div>
-                
-                <div class="flex flex-wrap -mx-3 ">
-                    <div class="w-full md:w-full px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            for="grid-desc">
-                            Profile Picture
-                        </label>
-                        {{student.profile_pic}}
+                        {{form.e_date}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-desc">
-                            Year of Passout
+                            Event Description
                         </label>
-                        {{student.year_of_passout}}
+                        {{form.desc}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-desc">
-                            Department
+                            Brochure
                         </label>
-                        {{student.dept}}
+                        {{form.brochure}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-password1">
-                            Password
+                            Participant Limit
                         </label>
-                        {{form.password1}}
+                        {{form.p_limit}}
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 ">
                     <div class="w-full md:w-full px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                             for="grid-password2">
-                            Confirm Password
+                            Event Type
                         </label>
-                        {{form.password2}}
+                        {{form.e_type}}
                     </div>
                 </div>
-
+                <div class="flex flex-wrap -mx-3 ">
+                    <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="grid-password2">
+                            Registration FEE
+                        </label>
+                        {{form.reg_fee}}
+                    </div>
+                </div>
                 {% for field in registration_form %}
                 <p>
                     {% for error in field.errors %}
@@ -98,4 +93,3 @@
         <!-- end-form-content -->
     </div>
 </section>
-{% endblock %}

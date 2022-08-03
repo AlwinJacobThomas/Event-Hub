@@ -4,7 +4,7 @@ from django.db import models
 import os
 from django.utils.deconstruct import deconstructible
 import uuid
-from users.models import Student
+from users.models import Student, Club
 
 
 from users.models import Account
@@ -31,7 +31,7 @@ path_and_rename = PathAndRename("event/")
 
 class Event(models.Model):
     club = models.ForeignKey(
-        Account, on_delete=models.CASCADE, null=True, blank=True)
+        Club, on_delete=models.CASCADE)
     e_name = models.CharField('Event Name', max_length=50)
     date_of_creation = models.DateTimeField(
         'Date of Creation', auto_now_add=True)
@@ -49,7 +49,7 @@ class Event(models.Model):
     attendees = models.ManyToManyField(Student, blank=True)
 
     def __str__(self):
-        return self.e_name
+        return self.e_name + "  " + str(self.club)
 
 
 class Notification(models.Model):

@@ -17,4 +17,8 @@ class AddEventForm(forms.ModelForm):
         self.fields['e_type'].widget.attrs.update({"class":"bg-green-300 w-full"})
         self.fields['reg_fee'].widget.attrs.update({"class":"bg-green-300 w-full"})
 
-        
+class EventRegForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ()
+     

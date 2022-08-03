@@ -80,23 +80,14 @@ class Account(AbstractBaseUser):
       return True
 
 
-class Club(models.Model):
-    user = models.OneToOneField(Account, on_delete=models.CASCADE)        
-    desc = models.TextField('Description')
-    profile_pic = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
-    
-    def __str__(self):
-        return str(self.user)
-
 class Student(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)        
-    bio = models.TextField('biography')
     dept = models.CharField('Department',max_length=233)
     year_of_passout = models.SmallIntegerField(blank=True,null=True)
     profile_pic = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
     
     def __str__(self):
-        return str(self.user) + self.dept
+        return str(self.user) +" "+ self.dept
 
 @receiver(post_save, sender=Account)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -105,4 +96,15 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Account)
 def save_user_profile(sender, instance, **kwargs):
-    instance.student.save()        
+    instance.student.save() 
+
+class Club(models.Model):
+    user = models.ForeignKey(Student, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)        
+    desc = models.TextField('Description')
+    profile_pic = models.ImageField(upload_to=path_and_rename,null=True,blank=True,default="users/profile/default.png")
+    
+    def __str__(self):
+        return self.name+" "+str(self.user) 
+
+       

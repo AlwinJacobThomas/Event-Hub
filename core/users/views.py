@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import is_valid_path
+from django.contrib.auth.decorators import login_required
 
 from users.forms import SignupForm,StudentRegForm
 
@@ -19,7 +20,10 @@ def login_user(request):
         user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            if user.is_staff:
+                return redirect('club')
+            else: 
+                return redirect('student')
             # Redirect to a success page.
         else:
             messages.success(request,"error in login")
@@ -27,6 +31,7 @@ def login_user(request):
             # Return an 'invalid login' error message.
     else:
         return render(request, 'users/login.html', {})
+@login_required
 def logout_user(request):
     logout(request)
     return redirect('index')        
@@ -38,8 +43,8 @@ def signup_user(request):
     context={"form":form,"student":student_form}
 
     if request.method=='POST' :
-        form = SignupForm(request.POST, instance=request.user)
-        club_form = StudentRegForm(request.POST,request.FILES,instance=request.user.student)
+        form = SignupForm(request.POST)
+        student_form = StudentRegForm(request.POST,request.FILES)
         if form.is_valid() and student_form.is_valid():
             #save the details
             form.save()

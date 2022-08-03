@@ -23,7 +23,8 @@
       <div class="right text-white ml-auto flex gap-3 items-center">
         <span class="  ">{{user.email}}</span>
         <a href="{% url 'logout' %}" class="">logout</a>
-        <!-- <img src="{{request.user.Students.profile_pic.url}}" alt="dp" class="rounded-full h-12 w-12"> -->
+        
+        <img src="{{user.student.profile_pic.url}}" alt="dp" class="rounded-full h-12 w-12">
       </div>
           
     </header>

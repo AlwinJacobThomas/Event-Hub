@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="w-full">
+    <div class="section w-full h-full flex flex-col py-40 px-10">
+        <a href="{% url 'add-event' %}"
+            class="btn bg-red-600 text-white px-5 py-2 w-40 text-center font-bold rounded mb-5">Add Event</a>
+        <div class="flex bg-gray-300 border-l-8 border-gray-600">
+            <a href="{% url 'club' %}" class="title text-3xl  md:text-4xl text-black py-10 px-10">Hosted Events</a>
+            <a href="{% url 'club-p' %}" class="title text-3xl  md:text-4xl text-gray-600 py-10 px-10">Participated
+                Events</a>
+            <a href="{% url 'club-n' %}" class="title text-3xl  md:text-4xl text-gray-600 py-10 px-10">New Events</a>
+        </div>
+        <div class="flex  gap-3">
+            {% for event in events %}
+            <div class="card h-full py-10 flex rounded-t-md bg-transparent">
+
+                <div class="flex flex-col card-details bg-white  p-5 h-full w-60 rounded-md">
+                    <img src="{{event.brochure.url}}" class="h-56  rounded-md" alt="card-img">
+                    <div class="card-title font-bold text-lg">{{event.e_name}}</div>
+                    <div class="card-club">{{event.e_type}}</div>
+                    <div class="card-type">{{event.reg_fee}}</div>
+                    <a href="{{event.id}}/event_panel/"
+                        class="btn text-center text-slate-50 rounded-xl px-3 py-2 bg-red-600 mt-2">Open</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
