@@ -15,5 +15,7 @@ open terminal and follow the commands
 > cd core
 
 > py manage.py makemigrations
+
 > py manage.py migrate
+
 > py manage.py runserver
