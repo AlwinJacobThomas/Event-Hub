@@ -22,11 +22,13 @@ def index(request):
 def club(request):
     user =request.user
     student = Student.objects.get(user=user)
+    club = Club.objects.get(user=student)
     try:
         club = Club.objects.get(user=student)
         events = Event.objects.filter(club=club)
         content= {  "events":events,
                     "user":user,
+                    'club':club
         }
         return render(request,'club/club-dash.html', content)
     except ObjectDoesNotExist:
@@ -87,10 +89,10 @@ def reg_event(request):
                 "user":request.user,
     }
     return render(request,'student-dash2.html', content)    
+
 @login_required
 def add_event(request):
     form = AddEventForm()
-    
     context={"form":form}
     user =request.user
     student = Student.objects.get(user=user)
@@ -104,6 +106,7 @@ def add_event(request):
                 post.club=club
                 post.save()
             return redirect('club')
+
         return render(request,'club/add-event.html', context)
     except ObjectDoesNotExist:
         return redirect('index')

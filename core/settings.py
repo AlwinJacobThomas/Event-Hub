@@ -1,7 +1,7 @@
 
 from pathlib import Path,os
 from telnetlib import AUTHENTICATION
-import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,10 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)pi+rd6e3$k%c(p&3e3-%$!y!@n#1+$@1gbzmi!9mnik0zh$pr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-#'eventhubcek.herokuapp.com/','htts://127.0.0.1'
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -34,7 +34,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,5 +129,3 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.AllowAllUsersModelBackend',
     'users.backend.CaseInsensitiveModelBackend'
 )
-
-django_heroku.settings(locals())

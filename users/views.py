@@ -31,11 +31,12 @@ def login_user(request):
             # Return an 'invalid login' error message.
     else:
         return render(request, 'users/login.html', {})
+
+        
 @login_required
 def logout_user(request):
     logout(request)
-    return redirect('index')        
-
+    return redirect('login')        
 
 def signup_user(request):
     form = SignupForm()
