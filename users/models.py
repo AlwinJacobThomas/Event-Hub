@@ -89,15 +89,19 @@ class Student(models.Model):
     def __str__(self):
         return str(self.user) +" "+ self.dept
 
-@receiver(post_save, sender=Account)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Student.objects.create(user=instance)
-
-@receiver(post_save, sender=Account)
-def save_user_profile(sender, instance, **kwargs):
-    instance.student.save() 
-
+# @receiver(post_save, sender=Account)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Student.objects.create(user=instance)
+#     else:
+#         # Update the existing Student instance
+#         student = instance.student
+#         # You can update other fields here if needed
+#         student.save()
+# @receiver(post_save, sender=Account)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.student.save()
+    
 class Club(models.Model):
     user = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)        
