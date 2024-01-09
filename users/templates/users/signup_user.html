@@ -7,10 +7,44 @@
         <!-- form-content -->
         <div class="bg-gray-300 self-center font-normal text-gray-600 h-90 content p-10 rounded-lg">
             <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Student Signup</div>
-            
-            <form method="post" action="{% url 'signup_user' %}">
+
+            <form class="w-full max-w-lg" method="post" action="{% url 'signup_user' %}">
                 {% csrf_token %}
-                {{ user_form.as_p }}
+
+                <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-email">Email
+                    </label>
+                    {{ user_form.email }}
+                </div>
+                <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-email">username
+                    </label>
+                    {{ user_form.username }}
+                </div>
+                <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password">Password
+                    </label>
+                    {{ user_form.password }}
+                    {% for error in user_form.password.errors %}
+                    <p class="text-red-500 text-xs italic">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="w-full md:w-full px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password2">
+                        Confirm Password
+                    </label>
+                    {# <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-password2" type="password" name='password2' placeholder="**** ****"> #}
+                    {{ user_form.password2 }}
+                    {% for error in user_form.password2.errors %}
+                    <p class="text-red-500 text-xs italic">{{ error }}</p>
+                    {% endfor %}
+                </div>
                 <button type="submit">Create Account</button>
             </form>
         </div>

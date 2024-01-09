@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section class="absolute w-full flex flex-wrap top-56">
-    <div class="container mb-20  flex flex-wrap flex-col h-1/6 px-10 md:px-60  justify-center">
+  <section class="absolute w-full flex flex-wrap top-56">
+    <div class="container mb-20 flex flex-wrap flex-col h-1/6 px-10 md:px-60 justify-center">
+      <!-- form-content -->
+      <div class="bg-gray-300 self-center font-normal text-gray-600 h-90 content p-10 rounded-lg">
+        <div class="title font-sans font-bold text-red-600 text-3xl py-5">Student Signup</div>
 
-        <!-- form-content -->
-        <div class="bg-gray-300 self-center font-normal text-gray-600 h-90 content p-10 rounded-lg">
-            <div class=" title font-sans font-bold text-red-600 text-3xl py-5">Student Signup</div>
-            
-           <form method="post" action="{% url 'student_creation' user_id %}">
-                {% csrf_token %}
-                {{ student_form.as_p }}
-                <button type="submit">Complete Registration</button>
-            </form>
-        </div>
-        <!-- end-form-content -->
+        <form class="w-full max-w-lg" method="post" action="{% url 'student_creation' user_id %}">
+          {% csrf_token %}
+          {{ student_form.as_p }}
+          <button type="submit">Complete Registration</button>
+        </form>
+      </div>
+      <!-- end-form-content -->
     </div>
-</section>
+  </section>
 {% endblock %}

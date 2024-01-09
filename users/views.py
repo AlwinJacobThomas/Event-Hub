@@ -1,13 +1,12 @@
 from django.utils.translation import gettext as _
-from multiprocessing import context
-from django.http import HttpResponse
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
-from django.contrib.sessions.models import Session
+
 from .models import Account
 from .forms import SignupForm, StudentRegForm
 
